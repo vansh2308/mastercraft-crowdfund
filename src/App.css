@@ -19,3 +19,11 @@ body{
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
+
+input:checked{
+  background-color: #3cb3aa;
+}

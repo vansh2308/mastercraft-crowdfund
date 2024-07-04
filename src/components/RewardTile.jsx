@@ -22,7 +22,7 @@ export default function RewardTile({ reward }){
 
                 <button 
                 className="bg-lgreen px-6 py-3 rounded-full text-xs text-white font-medium hover:bg-green"
-                style={ !reward.qtyLeft ? {backgroundColor: "#707070"} : {} }
+                style={ !reward.qtyLeft ? {backgroundColor: "#707070", cursor: "default"} : {} }
                 >
                     { reward.qtyLeft ?  "Select Reward": "Out of Stock"}
                 </button>

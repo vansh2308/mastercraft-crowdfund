@@ -17,9 +17,9 @@ export default function About() {
             </p>
 
             {
-                rewardData.map((reward, key) => {
+                rewardData.slice(1, ).map((reward, key) => {
                     return(
-                        <RewardTile reward={reward} />
+                        <RewardTile reward={reward} key={key} />
                     )
                 })
             }
