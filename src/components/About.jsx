@@ -5,9 +5,6 @@ import RewardTile from "./RewardTile";
 
 
 export default function About() {
-    useEffect(() => {
-        console.log(rewardData);
-    }, [])
 
     return (
         <div className="w-full h-fit bg-white border-greywhite border-[1px] rounded-lg min-h-40 p-10">

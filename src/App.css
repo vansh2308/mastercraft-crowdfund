@@ -23,7 +23,6 @@ body{
   display: none;
 }
 
-
-input:checked{
-  background-color: #3cb3aa;
+.radiobtn{
+  width: 0.3rem !important;
 }

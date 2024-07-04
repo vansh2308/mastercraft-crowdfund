@@ -5,9 +5,6 @@ import { FaBookmark } from "react-icons/fa6";
 
 export default function Hero() {
     const [bookMarked, setBookmarked] = useState(false)
-    useEffect(() => {
-        console.log(bookMarked);
-    }, [bookMarked])
 
     return (
         <div className="w-full bg-white h-max border-greywhite rounded-md border-[1px] relative overflow-visible p-10 text-center">

@@ -1,6 +1,7 @@
 
 import { IoClose } from "react-icons/io5";
 import rewardData from "./../rewardData.json"
+import { useEffect, useState } from "react";
 
 export default function BackProjectForm() {
     return (
@@ -15,8 +16,9 @@ export default function BackProjectForm() {
             <form className="">
                 {
                     rewardData.map((reward, key) => {
+                        console.log(key)
                         return (
-                            <RewardOption reward={reward} key={key} />
+                            <RewardOption reward={reward} key={key} idx={key} />
                         )
                     })
                 }
@@ -27,36 +29,72 @@ export default function BackProjectForm() {
 }
 
 
-function RewardOption({ reward, key }) {
+function RewardOption({ reward, idx }) {
+
+    const [checked, setChecked] = useState(2);
+
+
     return (
-        <div
-            className="w-full border-[1px] border-lgrey/40 h-fit p-7 mt-7 rounded-md flex gap-6 items-start"
-            style={!reward.qtyLeft ? { opacity: "0.5", pointerEvents: "none" } : {}}
-        >
+        <div className="w-full h-fit border-[1px] border-lgrey/40 rounded-md mt-7 "
+            style={!reward.qtyLeft ? { opacity: "0.5", pointerEvents: "none" } : checked == idx ? { border: "2px solid #3cb3aa" } : {}}>
 
-            <input type="radio" className="mt-2" name="radioOption" />
-            <div className="w-full h-fit">
-                <div className="flex justify-between">
-                    <div className="flex gap-3 items-baseline">
-                        <h3 className="text-md font-bold text-black"> {reward.name} </h3>
-                        <span className="text-lgreen text-xs font-medium"> Pledge ${reward.minPrice} or more  </span>
+            <div className="w-full h-fit p-7 flex gap-6 items-start" >
 
-                    </div>
+                <button
+                    className="p-[10px] mt-1 relative radiobtn aspect-square rounded-full border-[1px] border-lgrey/60">
+                    <div
+                        className="w-[0.9rem] aspect-square absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-lgreen rounded-full hidden"
+                        style={checked == idx ? { display: "block" } : {}}
+                    />
+                </button>
 
-                    {
-                        reward.qtyLeft != "none" &&
-                        <div className="flex text-lgrey font-normal items-baseline gap-2">
-                            <h3 className="text-md font-bold text-black"> {reward.qtyLeft} </h3> <span className="text-xs"> left </span>
+
+
+                <div className="w-full h-fit">
+                    <div className="flex justify-between">
+                        <div className="flex gap-3 items-baseline">
+                            <h3 className="text-md font-bold text-black"> {reward.name} </h3>
+                            <span className="text-lgreen text-xs font-medium"> Pledge ${reward.minPrice} or more  </span>
+
                         </div>
 
-                    }
+                        {
+                            reward.qtyLeft != "none" &&
+                            <div className="flex text-lgrey font-normal items-baseline gap-2">
+                                <h3 className="text-md font-bold text-black"> {reward.qtyLeft} </h3> <span className="text-xs"> left </span>
+                            </div>
+
+                        }
+                    </div>
+
+                    <p className="mt-4 text-xs text-lgrey leading-6 font-normal">  {reward.details} </p>
+
                 </div>
 
-                <p className="mt-4 text-xs text-lgrey leading-6 font-normal">  {reward.details} </p>
 
             </div>
 
 
-        </div>
+            {   
+                checked == idx && 
+                <div className="w-full h-fit p-7 border-t-[2px] border-lgrey/20 flex justify-between items-center">
+                    <span className="text-lgrey text-xs font-normal"> Enter your Pledge</span>
+                    <div className="flex gap-3">
+                        <div className="flex gap-2 justify-center items-center border-[0.5px] border-lgreen rounded-full px-4 py-2">
+                            <span className="text-lgrey font-medium text-xs">$</span>
+                            <input type="text" placeholder={ reward.minPrice } className="w-8 text-center focus:outline-none text-xs font-semibold text-black" />
+                        </div>
+
+                        <button type="submit" className="px-4 py-2 bg-lgreen hover:bg-green text-xs font-semibold text-white rounded-full">
+                            Continue
+                        </button>
+
+
+                    </div>
+
+                </div>
+            }
+        </div >
+
     )
 }
