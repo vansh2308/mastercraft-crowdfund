@@ -1,13 +1,15 @@
 
-import { useEffect } from "react"
 
 import { useDispatch, useSelector } from "react-redux";
 import { setLightBoxDisplay } from "../features/LightBoxDisplaySlice";
-
+import { setChoice } from "../features/choiceSlice";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 
-export default function RewardTile({ reward }) {
+export default function RewardTile({ reward, idx }) {
+    const choice = useSelector(state => state.choice.value)
+
     const dispatch = useDispatch()
     const lightBoxDisplay = useSelector(state => state.lightBoxDisplay.value)
 
@@ -35,6 +37,7 @@ export default function RewardTile({ reward }) {
                     className="bg-lgreen px-6 py-3 rounded-full text-xs text-white font-medium hover:bg-green"
                     style={!reward.qtyLeft ? { backgroundColor: "#707070", cursor: "default" } : {}}
                     onClick={() => {
+                        dispatch(setChoice({ idx: idx+1, pledgeAmt: reward.minPrice }))
                         dispatch(setLightBoxDisplay(!lightBoxDisplay))
                     }}
                 >

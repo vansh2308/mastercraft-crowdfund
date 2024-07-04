@@ -1,5 +1,9 @@
 
-[
+
+
+import { createSlice } from "@reduxjs/toolkit";
+
+const rewardsData =  [
     {
         "name": "Pledge with no reward",
         "minPrice": 0,
@@ -24,3 +28,21 @@
         "qtyLeft": 0
     }
 ]
+
+export const rewardSlice = createSlice({
+  name: "rewards",
+  initialState: {
+    value: rewardsData
+  },
+  reducers: {
+    reduceQtyLeft: (state, action) => {
+        if(action.payload.id > 0){
+            state.value[action.payload.id].qtyLeft -= 1
+        }
+    }
+  }
+})
+
+export const { reduceQtyLeft } = rewardSlice.actions
+export default rewardSlice.reducer
+

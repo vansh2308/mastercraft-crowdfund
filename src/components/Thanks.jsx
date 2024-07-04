@@ -4,6 +4,7 @@ import { FaCheck } from "react-icons/fa";
 import { setLightBoxDisplay } from "../features/LightBoxDisplaySlice";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setChoice } from "../features/choiceSlice";
 
 
 export default function Thanks() {
@@ -22,6 +23,7 @@ export default function Thanks() {
             <Link className="bg-lgreen hover:bg-green px-6 py-2 text-white text-sm font-medium rounded-full mt-2"
                 to = "/"
                 onClick={() => {
+                    dispatch(setChoice({idx: 0, pledgeAmt: 0}))
                     dispatch(setLightBoxDisplay(false))
                 }}
             >

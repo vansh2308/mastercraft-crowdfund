@@ -26,3 +26,8 @@ body{
 .radiobtn{
   width: 0.3rem !important;
 }
+
+.amt-indicator{
+  transition: all 3s ease-out;
+  -webkit-transition: all 3s ease-out;
+}

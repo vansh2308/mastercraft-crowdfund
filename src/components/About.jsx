@@ -1,10 +1,12 @@
 
 import { useEffect } from "react"
-import rewardData from "./../rewardData.json"
+// import rewardData from "./../rewardData.json"
 import RewardTile from "./RewardTile";
+import { useSelector } from "react-redux";
 
 
 export default function About() {
+    const rewardData = useSelector(state => state.rewards.value)
 
     return (
         <div className="w-full h-fit bg-white border-greywhite border-[1px] rounded-lg min-h-40 p-10">
@@ -16,7 +18,7 @@ export default function About() {
             {
                 rewardData.slice(1, ).map((reward, key) => {
                     return(
-                        <RewardTile reward={reward} key={key} />
+                        <RewardTile reward={reward} key={key} idx={key} />
                     )
                 })
             }
