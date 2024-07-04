@@ -3,8 +3,14 @@ import { useEffect, useState } from "react";
 import logoMastercraft from "./../assets/logo-mastercraft.svg"
 import { FaBookmark } from "react-icons/fa6";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setLightBoxDisplay } from "../features/LightBoxDisplaySlice";
+import { Link } from "react-router-dom";
+
 export default function Hero() {
     const [bookMarked, setBookmarked] = useState(false)
+    const dispatch = useDispatch()
+    const lightBoxDisplay = useSelector(state => state.lightBoxDisplay.value)
 
     return (
         <div className="w-full bg-white h-max border-greywhite rounded-md border-[1px] relative overflow-visible p-10 text-center">
@@ -13,9 +19,15 @@ export default function Hero() {
             <h1 className="font-bold text-2xl mt-4 mb-2">Mastercraft Bamboo Monitor Riser</h1>
             <span className="font-normal text-dgrey text-sm">A beautiful & handcrafted monitor stand to reduce neck and eye strain.</span>
             <div className="flex justify-between w-full mt-9">
-                <button className="rounded-full py-3 px-8 bg-green text-white font-medium text-sm">
-                    Back this project
-                </button>
+                    <Link
+                        to = "/back-project"
+                        className="rounded-full py-3 px-8 bg-green text-white font-medium text-sm"
+                        onClick={() => {
+                            dispatch(setLightBoxDisplay(!lightBoxDisplay))
+                        }}
+                    >
+                        Back this project
+                    </Link>
 
                 <button
                     className="flex gap-3 items-center rounded-full bg-greywhite text-dgrey text-sm font-medium "
@@ -28,7 +40,7 @@ export default function Hero() {
                     >
                         <FaBookmark />
                     </div>
-                    <span className="pr-6 text-xs font-medium"> { bookMarked ? "Bookmarked" : "Bookmark" } </span>
+                    <span className="pr-6 text-xs font-medium"> {bookMarked ? "Bookmarked" : "Bookmark"} </span>
                 </button>
 
             </div>

@@ -6,15 +6,17 @@ import Hero from './components/Hero'
 import Stats from './components/Stats'
 import LightBox from './components/LightBox'
 
+import { useSelector } from 'react-redux'
+
 
 
 function App() {
-  const [LightBoxDisplay, setLightBoxDisplay ] = useState(true)
-
+  const lightBoxDisplay = useSelector(state => state.lightBoxDisplay.value)
+  
   return (
     <div className='w-screen min-h-max mb-40'>
       {
-        LightBoxDisplay && <LightBox />
+        lightBoxDisplay && <LightBox />
       }
 
       <Header />

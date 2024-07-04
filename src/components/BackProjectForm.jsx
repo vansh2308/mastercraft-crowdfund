@@ -3,12 +3,22 @@ import { IoClose } from "react-icons/io5";
 import rewardData from "./../rewardData.json"
 import { useEffect, useState } from "react";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setLightBoxDisplay } from "../features/LightBoxDisplaySlice";
+
+import { Link } from "react-router-dom";
+
 export default function BackProjectForm() {
+    const dispatch = useDispatch()
+
     return (
         <div className="w-[45%] h-fit bg-white border-greywhite rounded-md border-[1px] py-6 px-10">
-            <button className="float-right ">
+            <Link className="float-right "
+                to = "/"
+                onClick={() => dispatch(setLightBoxDisplay(false))}
+            >
                 <IoClose className="text-dgrey text-[1.4rem] aspect-square" />
-            </button>
+            </Link>
 
             <h3 className="font-bold text-2xl text-black mt-12">Back this project</h3>
             <p className="text-lgrey font-normal text-sm my-6">Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?</p>
@@ -79,19 +89,21 @@ function RewardOption({ reward, idx }) {
             </div>
 
 
-            {   
-                checked == idx && 
+            {
+                checked == idx &&
                 <div className="w-full h-fit p-7 border-t-[2px] border-lgrey/20 flex justify-between items-center">
                     <span className="text-lgrey text-xs font-normal"> Enter your Pledge</span>
                     <div className="flex gap-3">
                         <div className="flex gap-2 justify-center items-center border-[0.5px] border-lgreen rounded-full px-4 py-2">
                             <span className="text-lgrey font-medium text-xs">$</span>
-                            <input type="text" placeholder={ reward.minPrice } className="w-8 text-center focus:outline-none text-xs font-semibold text-black" />
+                            <input type="text" placeholder={reward.minPrice} className="w-8 text-center focus:outline-none text-xs font-semibold text-black" />
                         </div>
 
-                        <button type="submit" className="px-4 py-2 bg-lgreen hover:bg-green text-xs font-semibold text-white rounded-full">
+                        <Link  to="/thanks"
+                            className="px-4 py-2 bg-lgreen hover:bg-green text-xs font-semibold text-white rounded-full"   
+                        >
                             Continue
-                        </button>
+                        </Link>
 
 
                     </div>
