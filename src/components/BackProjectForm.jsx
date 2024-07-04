@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function BackProjectForm() {
     return (
-        <div className="w-[45%] h-fit bg-white border-greywhite rounded-md border-[1px] py-6 px-10 min-h-[120vh]">
+        <div className="w-[45%] h-fit bg-white border-greywhite rounded-md border-[1px] py-6 px-10">
             <button className="float-right ">
                 <IoClose className="text-dgrey text-[1.4rem] aspect-square" />
             </button>
@@ -31,12 +31,12 @@ export default function BackProjectForm() {
 
 function RewardOption({ reward, idx }) {
 
-    const [checked, setChecked] = useState(2);
+    const [checked, setChecked] = useState(0);
 
 
     return (
         <div className="w-full h-fit border-[1px] border-lgrey/40 rounded-md mt-7 "
-            style={!reward.qtyLeft ? { opacity: "0.5", pointerEvents: "none" } : checked == idx ? { border: "2px solid #3cb3aa" } : {}}>
+            style={reward.qtyLeft <= 0 ? { opacity: "0.5", pointerEvents: "none" } : checked == idx ? { border: "2px solid #3cb3aa" } : {}}>
 
             <div className="w-full h-fit p-7 flex gap-6 items-start" >
 
@@ -54,12 +54,16 @@ function RewardOption({ reward, idx }) {
                     <div className="flex justify-between">
                         <div className="flex gap-3 items-baseline">
                             <h3 className="text-md font-bold text-black"> {reward.name} </h3>
-                            <span className="text-lgreen text-xs font-medium"> Pledge ${reward.minPrice} or more  </span>
+
+                            {
+                                reward.minPrice > 0 &&
+                                <span className="text-lgreen text-xs font-medium"> Pledge ${reward.minPrice} or more  </span>
+                            }
 
                         </div>
 
                         {
-                            reward.qtyLeft != "none" &&
+                            reward.qtyLeft &&
                             <div className="flex text-lgrey font-normal items-baseline gap-2">
                                 <h3 className="text-md font-bold text-black"> {reward.qtyLeft} </h3> <span className="text-xs"> left </span>
                             </div>
