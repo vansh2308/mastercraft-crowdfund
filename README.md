@@ -1,4 +1,4 @@
-# Easy Bank Landing page
+# Mastercraft-crowdfunding-page
 
 ## Features
 - The website adapts to device's viewport i.e. fully responsive
